@@ -25,6 +25,10 @@ class ProductListViewModel : ViewModel() {
         getProducts()
     }
 
+    fun refreshProducts() {
+        getProducts()
+    }
+
     private fun getProducts() {
         Log.i(TAG, "Preparing to request products list")
         coroutineScope.launch {

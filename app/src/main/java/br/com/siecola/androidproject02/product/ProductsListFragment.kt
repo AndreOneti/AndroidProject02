@@ -33,7 +33,16 @@ class ProductsListFragment : Fragment() {
 
         binding.rcvProducts.adapter = ProductAdapter(ProductAdapter.ProductClickListener{
             Log.i(TAG,"Product selected: ${it.name}")
+            this.findNavController()
+                .navigate(ProductsListFragmentDirections.actionShowProductDetail(it.code))
         })
+
+        binding.productsRefresh.setOnRefreshListener {
+            Log.i(TAG, "Refreshing products list")
+            productListViewModel.refreshProducts()
+
+            binding.productsRefresh.isRefreshing = false
+        }
 
         return binding.root
     }

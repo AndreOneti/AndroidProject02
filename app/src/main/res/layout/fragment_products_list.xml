@@ -12,7 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/productsRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvProducts"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -29,6 +34,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:productsList="@{productListViewModel.products}"
             tools:listitem="@layout/item_product" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

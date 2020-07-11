@@ -37,7 +37,7 @@ class ProductAdapter(val onProductClickListener: ProductClickListener) :
 
     companion object ProductDiff : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem === newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
