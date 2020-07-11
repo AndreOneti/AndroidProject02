@@ -61,7 +61,7 @@
             android:paddingTop="12dip"
             android:paddingEnd="8dip"
             android:paddingBottom="12dip"
-            android:text="---"
+            app:productPrice="@{product.price}"
             tools:text="$ 30,00"
             android:textAlignment="center"
             android:textSize="14sp"

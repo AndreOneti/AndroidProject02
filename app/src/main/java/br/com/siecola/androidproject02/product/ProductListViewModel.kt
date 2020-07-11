@@ -1,7 +1,10 @@
 package br.com.siecola.androidproject02.product
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.siecola.androidproject02.network.Product
 import br.com.siecola.androidproject02.network.SalesApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +16,10 @@ private const val TAG = "ProductListViewModel"
 class ProductListViewModel : ViewModel() {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    private val _products = MutableLiveData<List<Product>>()
+    val products: LiveData<List<Product>>
+        get() = _products
 
     init {
         getProducts()
@@ -28,6 +35,8 @@ class ProductListViewModel : ViewModel() {
                 var productsList = getProductsDeferred.await()
 
                 Log.i(TAG, "Number of products ${productsList.size}")
+
+                _products.value = productsList
             } catch (e: Exception) {
                Log.i(TAG, "Error: ${e.message}")
             }
